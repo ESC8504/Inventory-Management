@@ -19,4 +19,8 @@ public class InventoryService {
     public List<InventoryModel> getAllInventories() {
         return inventoryRepository.findAll();
     }
+
+    public List<InventoryModel> getInventoriesByWarehouseId(int warehouseId) {
+        return inventoryRepository.findByWarehouseId(warehouseId);
+    }
 }

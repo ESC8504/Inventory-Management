@@ -18,12 +18,18 @@ public class InventoryModel {
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private ProductModel product;
+
+    @ManyToOne
+    @JoinColumn(name = "warehouse_id", referencedColumnName = "id")
+    private WarehouseModel warehouse;
+
     private int quantity;
 
     public InventoryModel() {}
 
-    public InventoryModel(ProductModel product, int quantity) {
+    public InventoryModel(ProductModel product, WarehouseModel warehouse, int quantity) {
         this.product = product;
+        this.warehouse = warehouse;
         this.quantity = quantity;
     }
 
@@ -43,6 +49,14 @@ public class InventoryModel {
         this.product = product;
     }
 
+    public WarehouseModel getWarehouse() {
+        return warehouse;
+    }
+
+    public void setWarehouse(WarehouseModel warehouse) {
+        this.warehouse = warehouse;
+    }
+
     public int getQuantity() {
         return quantity;
     }
@@ -50,6 +64,5 @@ public class InventoryModel {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
 
 }

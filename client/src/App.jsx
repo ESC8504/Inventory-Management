@@ -2,18 +2,22 @@
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import ProductList from "./components/ProductList";
+// import ProductList from "./components/ProductList";
+import { WarehouseProvider } from "./contexts/WarehouseContext";
+import WarehouseList from "./components/WarehouseList";
+import InventoryList from "./components/InventoryList";
 
 import './App.css'
 
 function App() {
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<ProductList />} />
-      </Routes>
-    </Router>
+    <WarehouseProvider>
+      <div>
+        <WarehouseList />
+        <InventoryList />
+      </div>
+    </WarehouseProvider>
   )
 }
 

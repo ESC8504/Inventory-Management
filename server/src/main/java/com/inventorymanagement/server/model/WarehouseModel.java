@@ -1,9 +1,14 @@
 package com.inventorymanagement.server.model;
 
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,11 +20,16 @@ public class WarehouseModel {
     private String location;
     private int capacity;
 
+    @JsonBackReference
+    @OneToMany(mappedBy = "warehouse")
+    private Set<InventoryModel> inventory;
+
     public WarehouseModel() {}
 
-    public WarehouseModel(String location, int capacity) {
+    public WarehouseModel(String location, int capacity, Set<InventoryModel> inventory) {
         this.location = location;
         this.capacity = capacity;
+        this.inventory = inventory;
     }
 
     public int getId() {
@@ -45,6 +55,16 @@ public class WarehouseModel {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
+
+    public Set<InventoryModel> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Set<InventoryModel> inventory) {
+        this.inventory = inventory;
+    }
+
+
 
 
 }

@@ -1,5 +1,7 @@
 package com.inventorymanagement.server.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,20 +19,22 @@ public class ProductModel {
     private String name;
     private String manufacturer;
     private String description;
-    private String partNiumber;
+    private String partNumber;
     private double price;
 
+    // used for avoiding infinite loops during serialization
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private CategoryModel category;
 
     public ProductModel() {}
 
-    public ProductModel(String name, String manufacturer, String description, String partNiumber, double price, CategoryModel category) {
+    public ProductModel(String name, String manufacturer, String description, String partNumber, double price, CategoryModel category) {
         this.name = name;
         this.manufacturer = manufacturer;
         this.description = description;
-        this.partNiumber = partNiumber;
+        this.partNumber = partNumber;
         this.price = price;
         this.category = category;
     }
@@ -67,12 +71,12 @@ public class ProductModel {
         this.description = description;
     }
 
-    public String getPartNiumber() {
-        return partNiumber;
+    public String getPartNumber() {
+        return partNumber;
     }
 
-    public void setPartNiumber(String partNiumber) {
-        this.partNiumber = partNiumber;
+    public void setPartNiumber(String partNumber) {
+        this.partNumber = partNumber;
     }
 
     public double getPrice() {

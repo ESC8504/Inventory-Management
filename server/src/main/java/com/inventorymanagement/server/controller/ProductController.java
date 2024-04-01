@@ -20,8 +20,8 @@ public class ProductController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<ProductModel>> getAllProducts() {
-        List<ProductModel> products = productService.getAllProducts();
+    public ResponseEntity<List<ProductModel>> getAllProductInfos() {
+        List<ProductModel> products = productService.getAllProductInfos();
         return ResponseEntity.ok(products);
     }
 }

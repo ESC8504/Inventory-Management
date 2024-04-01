@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useWarehouse } from '../contexts/WarehouseContext';
 import { Button, MenuItem, Select, FormControl, InputLabel } from '@mui/material';
 
-function WarehouseList() {
+function WarehouseList( {onSelectWarehouse} ) {
     const [warehouses, setWarehouses] = useState([]);
-    const { selectedWarehouse, setSelectedWarehouse } = useWarehouse();
 
     useEffect(() => {
         axios.get('http://localhost:8283/warehouse/all')
@@ -17,19 +15,16 @@ function WarehouseList() {
     }, []);
 
     return (
-        <FormControl>
-            <InputLabel id="warehouse-label">Warehouse</InputLabel>
-            <Select
-                labelId="warehouse-label"
-                id="warehouse"
-                value={selectedWarehouse}
-                onChange={e => setSelectedWarehouse(e.target.value)}
-            >
-                {warehouses.map(warehouse => (
-                    <MenuItem key={warehouse.id} value={warehouse.id}>{warehouse.location}</MenuItem>
-                ))}
-            </Select>
-        </FormControl>
+        <Select
+            onChange={e => onSelectWarehouse(e.target.value)}
+            displayEmpty
+            defaultValue=""
+        >
+            <MenuItem value="" disabled>Select a Warehouse</MenuItem>
+            {warehouses.map(warehouse => (
+                <MenuItem key={warehouse.id} value={warehouse.id}>{warehouse.location}</MenuItem>
+            ))}
+        </Select>
     )
 }
 

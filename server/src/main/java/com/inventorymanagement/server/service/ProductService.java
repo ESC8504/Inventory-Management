@@ -18,4 +18,8 @@ public class ProductService {
     public List<ProductModel> getAllProducts() {
         return productRepository.findAll();
     }
+
+    public List<ProductModel> getAllProductInfos() {
+        return productRepository.findAllProductInfos();
+    }
 }

@@ -1,5 +1,7 @@
 package com.inventorymanagement.server.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,6 +17,8 @@ public class InventoryModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    // used for avoiding infinite loops during serialization
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private ProductModel product;
@@ -64,5 +68,7 @@ public class InventoryModel {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+
 
 }

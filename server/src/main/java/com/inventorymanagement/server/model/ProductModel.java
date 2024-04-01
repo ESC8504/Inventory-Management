@@ -1,6 +1,6 @@
 package com.inventorymanagement.server.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,11 +23,12 @@ public class ProductModel {
     private String partNumber;
     private double price;
 
-    // used for avoiding infinite loops during serialization
-    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private CategoryModel category;
+
+    @OneToMany(mappedBy = "product")
+    private Set<InventoryModel> inventory;
 
     public ProductModel() {}
 
@@ -93,6 +95,14 @@ public class ProductModel {
 
     public void setCategory(CategoryModel category) {
         this.category = category;
+    }
+
+    public Set<InventoryModel> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Set<InventoryModel> inventory) {
+        this.inventory = inventory;
     }
 
 }

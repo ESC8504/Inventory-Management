@@ -2,6 +2,8 @@ package com.inventorymanagement.server.model;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,6 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "categories")
+@JsonIgnoreProperties("products")
 public class CategoryModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

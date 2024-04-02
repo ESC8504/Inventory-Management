@@ -18,4 +18,8 @@ public class CategoryService {
     public List<CategoryModel> getAllCategories() {
         return categoryRepository.findAll();
     }
+
+    public CategoryModel getCategoryById(int categoryId) {
+        return categoryRepository.findById(categoryId).orElse(null);
+    }
 }

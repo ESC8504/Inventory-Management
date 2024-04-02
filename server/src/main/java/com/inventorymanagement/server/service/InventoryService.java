@@ -20,6 +20,10 @@ public class InventoryService {
         return inventoryRepository.findAll();
     }
 
+    public InventoryModel saveInventory(InventoryModel inventory) {
+        return inventoryRepository.save(inventory);
+    }
+
     public List<InventoryModel> getInventoriesByWarehouseId(int warehouseId) {
         return inventoryRepository.findByWarehouseId(warehouseId);
     }

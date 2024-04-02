@@ -14,8 +14,9 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "warehouses")
 public class WarehouseModel {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String location;
     private int capacity;

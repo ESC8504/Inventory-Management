@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 @Table(name = "inventory")
 public class InventoryModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     // used for avoiding infinite loops during serialization

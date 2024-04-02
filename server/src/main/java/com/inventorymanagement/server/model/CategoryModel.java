@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 @JsonIgnoreProperties("products")
 public class CategoryModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
 

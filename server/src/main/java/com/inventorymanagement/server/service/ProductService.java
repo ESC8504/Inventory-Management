@@ -19,7 +19,12 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public ProductModel saveProduct(ProductModel product) {
+        return productRepository.save(product);
+    }
+
     public List<ProductModel> getAllProductInfos() {
         return productRepository.findAllProductInfos();
     }
+
 }

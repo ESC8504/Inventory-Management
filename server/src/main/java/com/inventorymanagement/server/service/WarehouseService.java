@@ -20,4 +20,7 @@ public class WarehouseService {
         return warehouseRepository.findAll();
     }
 
+    public WarehouseModel getWarehouseById(int warehouseId) {
+        return warehouseRepository.findById(warehouseId).orElse(null);
+    }
 }

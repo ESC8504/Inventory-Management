@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 @Table(name = "products")
 public class ProductModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String manufacturer;
@@ -77,7 +77,7 @@ public class ProductModel {
         return partNumber;
     }
 
-    public void setPartNiumber(String partNumber) {
+    public void setPartNumber(String partNumber) {
         this.partNumber = partNumber;
     }
 

@@ -6,7 +6,6 @@ import { BrowserRouter, Router, Routes, Route } from 'react-router-dom'
 import { WarehouseProvider } from "./contexts/WarehouseContext";
 import WarehouseList from "./components/WarehouseList";
 import InventoryList from "./components/InventoryList";
-import WarehouseSelectionPage from "./pages/WarehouseSelectionPage";
 import DashPage from "./pages/DashPage";
 
 import './App.css'

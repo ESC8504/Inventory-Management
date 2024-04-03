@@ -6,6 +6,7 @@ import { BrowserRouter, Router, Routes, Route } from 'react-router-dom'
 import { WarehouseProvider } from "./contexts/WarehouseContext";
 import DashPage from "./pages/DashPage";
 import WarehousePage from "./pages/WarehousePage";
+import CategoryPage from "./pages/CategoryPage";
 
 import './App.css'
 
@@ -18,6 +19,7 @@ function App() {
           {/* <Route path="/selection" element={<WarehouseSelectionPage />} /> */}
           <Route path="/dash" element={<DashPage />} />
           <Route path="/warehouse" element={<WarehousePage />} />
+          <Route path="/category" element={<CategoryPage />} />
         </Routes>
       </BrowserRouter>
     </WarehouseProvider>

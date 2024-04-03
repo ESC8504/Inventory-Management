@@ -18,6 +18,7 @@ public class WarehouseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String name;
     private String location;
     private int capacity;
 
@@ -27,7 +28,8 @@ public class WarehouseModel {
 
     public WarehouseModel() {}
 
-    public WarehouseModel(String location, int capacity, Set<InventoryModel> inventory) {
+    public WarehouseModel(String name, String location, int capacity, Set<InventoryModel> inventory) {
+        this.name = name;
         this.location = location;
         this.capacity = capacity;
         this.inventory = inventory;
@@ -39,6 +41,14 @@ public class WarehouseModel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLocation() {

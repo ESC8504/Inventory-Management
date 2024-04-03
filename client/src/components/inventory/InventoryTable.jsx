@@ -3,7 +3,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import InventoryItem from './InventoryItem';
 
-function InventoryTable({ inventory }) {
+function InventoryTable({ inventory, productEdited }) {
     return (
         <Paper>
             <Table>
@@ -16,6 +16,7 @@ function InventoryTable({ inventory }) {
                         <TableCell>Quantity</TableCell>
                         <TableCell>Price</TableCell>
                         <TableCell>Warehouse</TableCell>
+                        <TableCell>Actions</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -23,6 +24,7 @@ function InventoryTable({ inventory }) {
                         <InventoryItem
                             key={productItem.id}
                             productItem={productItem}
+                            productEdited={productEdited}
                         />
                     ))}
                 </TableBody>

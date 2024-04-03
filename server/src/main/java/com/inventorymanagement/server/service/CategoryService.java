@@ -26,4 +26,16 @@ public class CategoryService {
     public CategoryModel saveCategory(CategoryModel category) {
         return categoryRepository.save(category);
     }
+
+    public CategoryModel updateCategory(int categoryId, CategoryModel category) {
+
+        CategoryModel existingCategory = categoryRepository.findById(categoryId).orElse(null);
+
+        if (existingCategory == null) {
+            return null;
+        }
+
+        existingCategory.setName(category.getName());
+        return categoryRepository.save(existingCategory);
+    }
 }

@@ -27,6 +27,7 @@ function CategoryPage() {
             <Button startIcon={<AddIcon />} onClick={handleModalOpen}>Add Category</Button>
             <CategoryTable
                 categories={categories}
+                categoryEdited={handleReload}
             />
             <AddCategoryModal open={isModalOpen} handleClose={handleModalClose} categoryAdded={handleReload}/>
         </div>

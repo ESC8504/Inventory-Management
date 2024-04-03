@@ -13,6 +13,8 @@ import com.inventorymanagement.server.model.InventoryModel;
 public interface InventoryRepository extends JpaRepository<InventoryModel, Integer> {
     List<InventoryModel> findByWarehouseId(int productId);
 
+    InventoryModel findByProductIdAndWarehouseId(int productId, int warehouseId);
+
     // newly added warehouse's storage should defualt to 0 instead of null
     @Query("SELECT new com.inventorymanagement.server.dto.WarehouseStorageDTO(warehouse.id, warehouse.name, warehouse.location, warehouse.capacity, COALESCE(SUM(inventory.quantity), 0)) FROM WarehouseModel warehouse LEFT JOIN InventoryModel inventory ON warehouse.id = inventory.warehouse.id GROUP BY warehouse.id, warehouse.name, warehouse.location, warehouse.capacity")
     List<WarehouseStorageDTO> getWarehouseStorageInfo();

@@ -1,8 +1,4 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
 import { BrowserRouter, Router, Routes, Route } from 'react-router-dom'
-// import ProductList from "./components/ProductList";
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { WarehouseProvider } from "./contexts/WarehouseContext";
 import DashPage from "./pages/DashPage";
@@ -23,7 +19,6 @@ function App() {
         <BrowserRouter>
           <NavBar />
           <Routes>
-            {/* <Route path="/selection" element={<WarehouseSelectionPage />} /> */}
             <Route path="/home" element={<HomePage />} />
             <Route path="/dash" element={<DashPage />} />
             <Route path="/warehouse" element={<WarehousePage />} />

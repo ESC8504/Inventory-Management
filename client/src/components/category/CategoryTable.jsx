@@ -3,13 +3,14 @@ import CategoryItem from './CategoryItem';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-function CategoryTable({ categories }) {
+function CategoryTable({ categories, categoryEdited }) {
     return (
         <Paper>
             <Table>
                 <TableHead>
                     <TableRow>
                         <TableCell>Category</TableCell>
+                        <TableCell>Actions</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -17,6 +18,7 @@ function CategoryTable({ categories }) {
                         <CategoryItem
                             key={category.id}
                             category={category}
+                            categoryEdited={categoryEdited}
                         />
                     ))}
                 </TableBody>

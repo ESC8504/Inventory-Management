@@ -27,4 +27,15 @@ public class InventoryService {
     public List<InventoryModel> getInventoriesByWarehouseId(int warehouseId) {
         return inventoryRepository.findByWarehouseId(warehouseId);
     }
+
+    public InventoryModel updateInventory(int productId, int warehouseId, int newQuantity) {
+        InventoryModel existingInventory = inventoryRepository.findByProductIdAndWarehouseId(productId, warehouseId);
+
+        if (existingInventory == null) {
+            return null;
+        }
+
+        existingInventory.setQuantity(newQuantity);
+        return inventoryRepository.save(existingInventory);
+    }
 }

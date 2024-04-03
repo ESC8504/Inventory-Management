@@ -14,7 +14,7 @@ function InventoryItem({ productItem }) {
             <TableCell>{productItem.partNumber}</TableCell>
             <TableCell>{inventoryInfo.quantity}</TableCell>
             <TableCell>${productItem.price}</TableCell>
-            <TableCell>{inventoryInfo.warehouse.location}</TableCell>
+            <TableCell>{inventoryInfo.warehouse.name}</TableCell>
             <TableCell>
                 <IconButton >
                     <EditIcon />

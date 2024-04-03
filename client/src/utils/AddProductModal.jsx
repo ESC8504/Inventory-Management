@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Modal, Box, Typography, TextField, Button, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import axios from 'axios';
 import { useWarehouse } from '../contexts/WarehouseContext';
-import WarehouseList from '../components/WarehouseList';
+import WarehouseList from '../components/warehouse/WarehouseList';
 
 function AddProductModal({ open, handleClose, productAdded }) {
     const { selectedWarehouse, setSelectedWarehouse } = useWarehouse();

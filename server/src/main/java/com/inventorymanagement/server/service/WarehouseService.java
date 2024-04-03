@@ -35,4 +35,18 @@ public class WarehouseService {
     public WarehouseModel saveWarehouse(WarehouseModel warehouse) {
         return warehouseRepository.save(warehouse);
     }
+
+    public WarehouseModel updateWarehouse(int warehouseId, WarehouseModel warehouse) {
+
+        WarehouseModel existingWarehouse = warehouseRepository.findById(warehouseId).orElse(null);
+
+        if (existingWarehouse == null) {
+            return null;
+        }
+
+        existingWarehouse.setName(warehouse.getName());
+        existingWarehouse.setLocation(warehouse.getLocation());
+        existingWarehouse.setCapacity(warehouse.getCapacity());
+        return warehouseRepository.save(existingWarehouse);
+    }
 }

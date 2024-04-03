@@ -35,6 +35,7 @@ function DashPage() {
             <Button startIcon={<AddIcon />} onClick={handleModalOpen}>Add Product</Button>
             <InventoryTable
                 inventory={inventory}
+                productEdited={handleReload}
             />
             <AddProductModal open={isModalOpen} handleClose={handleModalClose} productAdded={handleReload}/>
         </div>

@@ -27,6 +27,7 @@ function WarehousePage() {
             <Button startIcon={<AddIcon />} onClick={handleModalOpen}>Add Warehouse</Button>
             <WarehouseTable
                 warehouses={warehouses}
+                warehouseEdited={handleReload}
             />
             <AddWarehouseModal open={isModalOpen} handleClose={handleModalClose} warehouseAdded={handleReload}/>
         </div>

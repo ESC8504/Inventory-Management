@@ -3,7 +3,7 @@ import WarehouseItem from './WarehouseItem';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-function WarehouseTable({ warehouses }) {
+function WarehouseTable({ warehouses, warehouseEdited }) {
     return (
         <Paper>
             <Table>
@@ -13,13 +13,15 @@ function WarehouseTable({ warehouses }) {
                         <TableCell>Location</TableCell>
                         <TableCell>Current Storage</TableCell>
                         <TableCell>Capacity</TableCell>
+                        <TableCell>Actions</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {warehouses.map(warehouse => (
                         <WarehouseItem
-                            key={warehouse.id}
+                            key={warehouse.warehouseId}
                             warehouse={warehouse}
+                            warehouseEdited={warehouseEdited}
                         />
                     ))}
                 </TableBody>

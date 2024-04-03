@@ -24,7 +24,7 @@ function WarehouseList( {selectedWarehouse, onSelectWarehouse} ) {
                 defaultValue=""
             >
                 {warehouses.map(warehouse => (
-                    <MenuItem key={warehouse.id} value={warehouse.id}>{warehouse.location}</MenuItem>
+                    <MenuItem key={warehouse.id} value={warehouse.id}>{warehouse.name}</MenuItem>
                 ))}
             </Select>
         </FormControl>

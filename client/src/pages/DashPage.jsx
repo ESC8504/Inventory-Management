@@ -1,5 +1,5 @@
 import SearchBar from '../components/SearchBar';
-import InventoryTable from '../components/InventoryTable';
+import InventoryTable from '../components/inventory/InventoryTable';
 import AddProductModal from '../utils/AddProductModal';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -30,7 +30,7 @@ function DashPage() {
 
     return (
         <div>
-            <h1>Warehouse Inventory</h1>
+            <h1>Inventory Management</h1>
             <SearchBar />
             <Button startIcon={<AddIcon />} onClick={handleModalOpen}>Add Product</Button>
             <InventoryTable

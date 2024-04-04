@@ -1,4 +1,4 @@
-import ConfirmDialog from '../../utils/confirmDialog';
+import ConfirmDialog from '../../utils/ConfirmDialog';
 import WarningDialog from '../../utils/WarningDialog';
 import { TableCell, TableRow, IconButton, TextField } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';

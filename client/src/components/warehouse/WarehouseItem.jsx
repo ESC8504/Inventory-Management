@@ -1,5 +1,3 @@
-import ConfirmDialog from '../../utils/confirmDialog';
-import WarningDialog from '../../utils/WarningDialog';
 import { TableCell, TableRow, IconButton, TextField } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -7,6 +5,8 @@ import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import ConfirmDialog from '../../utils/ConfirmDialog';
+import WarningDialog from '../../utils/WarningDialog';
 
 function WarehouseItem({ warehouse, warehouseEdited }) {
 

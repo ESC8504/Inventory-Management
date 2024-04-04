@@ -8,7 +8,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function InventoryItem({ productItem, productEdited }) {
+function InventoryItem({ productItem, productEdited}) {
 
     const [categories, setCategories] = useState([]);
     const [warehouses, setWarehouses] = useState([]);

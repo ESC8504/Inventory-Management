@@ -1,9 +1,10 @@
-import SearchBar from '../components/SearchBar';
+import SearchBar from '../utils/SearchBar';
 import InventoryTable from '../components/inventory/InventoryTable';
 import AddProductModal from '../utils/AddProductModal';
+import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Button } from '@mui/material';
+import { Button, Box, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
 function DashPage() {
@@ -13,9 +14,15 @@ function DashPage() {
     const [reload, setReload] = useState(false);
     const [search, setSearch] = useState('');
 
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filteredNames, setFilteredNames] = useState([]);
+    const [hasSearchTerm, setHasSearchTerm] = useState(false);
     useEffect(() => {
         axios.get(`http://localhost:8283/product/all`)
-            .then(res => setInventory(res.data))
+            .then(res => {
+                setInventory(res.data)
+                setFilteredNames(res.data)
+            })
             .catch(err => console.log(err));
     }, [reload]);
 
@@ -28,17 +35,38 @@ function DashPage() {
 
     const handleReload = () => setReload(!reload);
 
+
+    const handleSearch = (query) => {
+        setSearchTerm(query);
+        if (query) {
+          const filteredResults = inventory.filter((products) => products.name.toLowerCase()
+            .includes(query.toLowerCase()));
+          setFilteredNames(filteredResults);
+          setHasSearchTerm(filteredResults.length === 0);
+        } else {
+          setFilteredNames(inventory);
+          setHasSearchTerm(false);
+        }
+      };
+
+
     return (
         <div>
-            <h1>Inventory Management</h1>
-            <SearchBar />
-            <Button startIcon={<AddIcon />} onClick={handleModalOpen}>Add Product</Button>
+            <Box sx={{ marginBottom: 2, marginTop:2 }}>
+                <Typography variant="h5">
+                    Inventory Management
+                </Typography>
+            </Box>
+            <Box display="flex" justifyContent="flex-start" gap={28}>
+                <SearchBar onSearch={handleSearch}/>
+                <Button startIcon={<AddCircleOutlineRoundedIcon />} onClick={handleModalOpen}>Add Product</Button>
+            </Box>
             <InventoryTable
-                inventory={inventory}
+                inventory={filteredNames}
                 productEdited={handleReload}
             />
             <AddProductModal open={isModalOpen} handleClose={handleModalClose} productAdded={handleReload}/>
-        </div>
+    </div>
     )
 }
 

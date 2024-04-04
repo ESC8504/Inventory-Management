@@ -38,4 +38,15 @@ public class CategoryService {
         existingCategory.setName(category.getName());
         return categoryRepository.save(existingCategory);
     }
+
+    public boolean canDeleteCategory(int categoryId) {
+        CategoryModel category = categoryRepository.findById(categoryId).orElse(null);
+        // check if category exists and has no products associated
+        if (category != null && category.getProducts().isEmpty()) {
+            categoryRepository.deleteById(categoryId);
+            return true;
+        }
+        return false;
+    }
 }
+

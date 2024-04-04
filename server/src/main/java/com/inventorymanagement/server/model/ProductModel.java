@@ -2,6 +2,7 @@ package com.inventorymanagement.server.model;
 
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,7 +28,7 @@ public class ProductModel {
     @JoinColumn(name = "category_id", nullable = false)
     private CategoryModel category;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)// to delete child when parent is deleted
     private Set<InventoryModel> inventory;
 
     public ProductModel() {}

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.inventorymanagement.server.dto.WarehouseStorageDTO;
+import com.inventorymanagement.server.model.InventoryModel;
 import com.inventorymanagement.server.model.WarehouseModel;
 import com.inventorymanagement.server.repository.InventoryRepository;
 import com.inventorymanagement.server.repository.WarehouseRepository;
@@ -48,5 +49,14 @@ public class WarehouseService {
         existingWarehouse.setLocation(warehouse.getLocation());
         existingWarehouse.setCapacity(warehouse.getCapacity());
         return warehouseRepository.save(existingWarehouse);
+    }
+
+    public boolean canDeleteWarehouse(int warehouseId) {
+        List<InventoryModel> inventory = inventoryRepository.findByWarehouseId(warehouseId);
+        if (inventory != null && inventory.isEmpty()) {
+            warehouseRepository.deleteById(warehouseId);
+            return true;
+        }
+        return false;
     }
 }

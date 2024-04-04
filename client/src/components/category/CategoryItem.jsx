@@ -1,3 +1,5 @@
+import ConfirmDialog from '../../utils/confirmDialog';
+import WarningDialog from '../../utils/WarningDialog';
 import { TableCell, TableRow, IconButton, TextField } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -29,6 +31,29 @@ function CategoryItem({ category, categoryEdited }) {
             .catch(err => console.log(err));
     }
 
+    const [warningOpen, setWarningOpen] = useState(false);
+    const [warningMessage, setWarningMessage] = useState('');
+
+    const [confirmOpen, setConfirmOpen] = useState(false);
+
+    const handleDelete = () => {
+        setConfirmOpen(true);
+    }
+
+    const handleConfirm = () => {
+        axios.delete(`http://localhost:8283/category/delete/${category.id}`)
+            .then(res => {
+                setConfirmOpen(false);
+                categoryEdited();
+            })
+            .catch(err => {
+                setWarningMessage(err.response.data);
+                setWarningOpen(true);
+                setConfirmOpen(false);
+                console.log(err)
+            });
+    }
+
     return (
         <TableRow>
             <TableCell>
@@ -55,12 +80,25 @@ function CategoryItem({ category, categoryEdited }) {
                         <IconButton onClick={handleEdit}>
                             <EditIcon />
                         </IconButton>
-                        <IconButton >
+                        <IconButton onClick={handleDelete} >
                             <DeleteIcon />
                         </IconButton>
                     </>
                 )}
             </TableCell>
+            <WarningDialog
+                open={warningOpen}
+                handleClose={() => setWarningOpen(false)}
+                title="Warning"
+                content={warningMessage}
+            />
+            <ConfirmDialog
+                open={confirmOpen}
+                handleConfirm={handleConfirm}
+                handleClose={() => setConfirmOpen(false)}
+                title="Delete Category"
+                content="Are you sure you want to delete this category?"
+            />
         </TableRow>
     )
 }

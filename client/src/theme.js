@@ -6,6 +6,9 @@ const theme = createTheme({
       default: '#f5f5f5'
     },
   },
+  typography: {
+    fontFamily: '"JetBrains Mono", monospace',
+  },
 });
 
 export default theme;

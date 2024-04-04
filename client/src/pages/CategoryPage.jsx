@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Button } from '@mui/material';
+import { Button, Box, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import CategoryTable from '../components/category/CategoryTable';
 import AddCategoryModal from '../utils/AddCategoryModal';
+import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 
 function CategoryPage() {
     const [categories, setCategories] = useState([]);
@@ -23,8 +24,12 @@ function CategoryPage() {
 
     return (
         <div>
-            <h1>Categories</h1>
-            <Button startIcon={<AddIcon />} onClick={handleModalOpen}>Add Category</Button>
+            <Box sx={{ marginBottom: 2, marginTop:2 }}>
+                <Typography variant="h5">
+                    Category Management
+                </Typography>
+            </Box>
+            <Button startIcon={<AddCircleOutlineRoundedIcon />} onClick={handleModalOpen}>Add Category</Button>
             <CategoryTable
                 categories={categories}
                 categoryEdited={handleReload}

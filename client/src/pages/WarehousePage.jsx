@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import WarehouseTable from '../components/warehouse/WarehouseTable';
 import AddWarehouseModal from '../utils/AddWarehouseModal';
-import { Button } from '@mui/material';
+import { Button, Box, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
+
 
 function WarehousePage() {
     const [warehouses, setWarehouses] = useState([]);
@@ -23,8 +25,12 @@ function WarehousePage() {
 
     return (
         <div>
-            <h1>Warehouses</h1>
-            <Button startIcon={<AddIcon />} onClick={handleModalOpen}>Add Warehouse</Button>
+            <Box sx={{ marginBottom: 2, marginTop:2 }}>
+                <Typography variant="h5">
+                    Warehouse Management
+                </Typography>
+            </Box>
+            <Button startIcon={<AddCircleOutlineRoundedIcon />} onClick={handleModalOpen} >Add Warehouse</Button>
             <WarehouseTable
                 warehouses={warehouses}
                 warehouseEdited={handleReload}

@@ -47,25 +47,31 @@ public class ProductController {
     @PostMapping("/add")
     public ResponseEntity<?> addProduct(@RequestBody ProductDTO productDTO) {
         try {
-            CategoryModel category = categoryService.getCategoryById(productDTO.getCategoryId());
-            WarehouseModel warehouse = warehouseService.getWarehouseById(productDTO.getWarehouseId());
+            boolean canAdd = productService.canAddOrUpdateProduct(productDTO);
+            if (canAdd) {
+                CategoryModel category = categoryService.getCategoryById(productDTO.getCategoryId());
+                WarehouseModel warehouse = warehouseService.getWarehouseById(productDTO.getWarehouseId());
 
-            ProductModel product = new ProductModel(
-                productDTO.getName(),
-                productDTO.getManufacturer(),
-                productDTO.getDescription(),
-                productDTO.getPartNumber(),
-                productDTO.getPrice(),
-                category
-            );
+                ProductModel product = new ProductModel(
+                    productDTO.getName(),
+                    productDTO.getManufacturer(),
+                    productDTO.getDescription(),
+                    productDTO.getPartNumber(),
+                    productDTO.getPrice(),
+                    category
+                );
 
-            product = productService.saveProduct(product);
+                product = productService.saveProduct(product);
 
-            InventoryModel inventory = new InventoryModel(product, warehouse, productDTO.getQuantity());
+                InventoryModel inventory = new InventoryModel(product, warehouse, productDTO.getQuantity());
 
-            inventoryService.saveInventory(inventory);
+                inventoryService.saveInventory(inventory);
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(product);
+                return ResponseEntity.status(HttpStatus.CREATED).body(product);
+            }
+
+            return ResponseEntity.badRequest().body("Adding this product exceeds warehouse capacity.");
+
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
@@ -74,9 +80,16 @@ public class ProductController {
     @PutMapping("/update/{productId}")
     public ResponseEntity<?> updateProduct(@PathVariable int productId, @RequestBody ProductDTO productDTO) {
         try {
-            ProductModel updatedProduct = productService.updateProduct(productId, productDTO);
+            boolean canUpdate = productService.canAddOrUpdateProduct(productDTO);
 
-            return ResponseEntity.ok(updatedProduct);
+            if (canUpdate) {
+                ProductModel updatedProduct = productService.updateProduct(productId, productDTO);
+
+                return ResponseEntity.ok(updatedProduct);
+            }
+
+            return ResponseEntity.badRequest().body("Updating this product exceeds warehouse capacity.");
+
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }

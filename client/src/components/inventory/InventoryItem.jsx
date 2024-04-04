@@ -1,4 +1,5 @@
 import ConfirmDialog from '../../utils/confirmDialog';
+import WarningDialog from '../../utils/WarningDialog';
 import { TableCell, TableRow, IconButton, TextField, Select, MenuItem } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -11,6 +12,7 @@ function InventoryItem({ productItem, productEdited }) {
 
     const [categories, setCategories] = useState([]);
     const [warehouses, setWarehouses] = useState([]);
+
     // for some reason, the warehouse and category contexts are not working here, had to use useState and useEffect here
     useEffect(() => {
         axios.get('http://localhost:8283/warehouse/all')
@@ -55,6 +57,9 @@ function InventoryItem({ productItem, productEdited }) {
         });
     }
 
+    const [warningOpen, setWarningOpen] = useState(false);
+    const [errorMessages, setErrorMessages] = useState('');
+
     const handleSave = () => {
         axios.put(`http://localhost:8283/product/update/${productItem.id}`, {
             name: editedInventory.name,
@@ -68,8 +73,13 @@ function InventoryItem({ productItem, productEdited }) {
             .then(res => {
                 setIsEdited(false);
                 productEdited();
+                setErrorMessages('');
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log(err)
+                setErrorMessages(err.response.data)
+                setWarningOpen(true);
+            });
     }
 
     const [confirmOpen, setConfirmOpen] = useState(false);
@@ -175,6 +185,12 @@ function InventoryItem({ productItem, productEdited }) {
                 handleClose={() => setConfirmOpen(false)}
                 title="Delete Product"
                 content="Are you sure you want to delete this product?"
+            />
+            <WarningDialog
+                open={warningOpen}
+                handleClose={() => setWarningOpen(false)}
+                title="Error"
+                content={errorMessages}
             />
         </TableRow>
     )

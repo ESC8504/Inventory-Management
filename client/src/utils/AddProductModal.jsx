@@ -60,7 +60,7 @@ function AddProductModal({ open, handleClose, productAdded }) {
         <Modal
             open={open}
             onClose={() => {
-                handleClose
+                handleClose()
                 setErrorMessages('')
             }}
             aria-labelledby="add-product-modal"

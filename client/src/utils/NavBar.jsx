@@ -4,14 +4,14 @@ import SKImage from '../../public/SKB.png';
 
 function NavBar() {
     return (
-        <AppBar position="static">
+        <AppBar position="fixed" x={{ width: '100%', top: 0 }}>
             <Container>
-                <Toolbar sx={{ flexDirection: 'column', alignItems: 'center' }}>
+                <Toolbar sx={{ justifyContent: 'space-between' }}>
                     <Typography variant="h4" component="div">
                         Inventory Management System
                     </Typography>
                     <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-                        <img src={SKImage} style={{ height: '30px', filter: 'brightness(0) invert1)'  }}  />
+                        <img src={SKImage} style={{ height: '30px' }}  />
                         <Button color="inherit" component={Link} to="/home">Home</Button>
                         <Button color="inherit" component={Link} to="/warehouse">Warehouse</Button>
                         <Button color="inherit" component={Link} to="/category">Category</Button>

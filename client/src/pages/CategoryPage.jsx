@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Button, Box, Typography } from '@mui/material';
+import { Button, Box, Typography, Toolbar } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import CategoryTable from '../components/category/CategoryTable';
 import AddCategoryModal from '../utils/AddCategoryModal';
@@ -24,6 +24,7 @@ function CategoryPage() {
 
     return (
         <div>
+            <Toolbar />
             <Box sx={{ marginBottom: 2, marginTop:2 }}>
                 <Typography variant="h5">
                     Category Management

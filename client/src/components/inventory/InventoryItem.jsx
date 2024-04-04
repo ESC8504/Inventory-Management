@@ -1,3 +1,4 @@
+import ConfirmDialog from '../../utils/confirmDialog';
 import { TableCell, TableRow, IconButton, TextField, Select, MenuItem } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -66,6 +67,21 @@ function InventoryItem({ productItem, productEdited }) {
         })
             .then(res => {
                 setIsEdited(false);
+                productEdited();
+            })
+            .catch(err => console.log(err));
+    }
+
+    const [confirmOpen, setConfirmOpen] = useState(false);
+
+    const handleDelete = () => {
+        setConfirmOpen(true);
+    }
+
+    const handleConfirm = () => {
+        axios.delete(`http://localhost:8283/product/delete/${productItem.id}`)
+            .then(res => {
+                setConfirmOpen(false);
                 productEdited();
             })
             .catch(err => console.log(err));
@@ -147,12 +163,19 @@ function InventoryItem({ productItem, productEdited }) {
                         <IconButton onClick={handleEdit}>
                             <EditIcon />
                         </IconButton>
-                        <IconButton >
+                        <IconButton onClick={handleDelete}>
                             <DeleteIcon />
                         </IconButton>
                     </>
                 )}
             </TableCell>
+            <ConfirmDialog
+                open={confirmOpen}
+                handleConfirm={handleConfirm}
+                handleClose={() => setConfirmOpen(false)}
+                title="Delete Product"
+                content="Are you sure you want to delete this product?"
+            />
         </TableRow>
     )
 }

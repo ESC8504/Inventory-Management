@@ -64,4 +64,11 @@ public class ProductService {
         productRepository.deleteById(productId);
     }
 
+    public boolean canAddOrUpdateProduct(ProductDTO productDTO) {
+        if (inventoryService.canAddOrUpdateQuantity(productDTO.getWarehouseId(), productDTO.getQuantity())) {
+            return true;
+        }
+        return false;
+    }
+
 }

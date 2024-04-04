@@ -18,6 +18,8 @@ function AddProductModal({ open, handleClose, productAdded }) {
         warehouseId: selectedWarehouse
     });
 
+    const [errorMessages, setErrorMessages] = useState('');
+
     useEffect(() => {
         axios.get('http://localhost:8283/category/all')
             .then(res => setCategories(res.data))
@@ -46,19 +48,27 @@ function AddProductModal({ open, handleClose, productAdded }) {
                 console.log(res.data);
                 handleClose();
                 productAdded();
+                setErrorMessages('');
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log(err)
+                setErrorMessages(err.response.data);
+            });
     }
 
     return (
         <Modal
             open={open}
-            onClose={handleClose}
+            onClose={() => {
+                handleClose
+                setErrorMessages('')
+            }}
             aria-labelledby="add-product-modal"
             aria-describedby="add-product-modal"
         >
             <Box sx={style}>
                 <Typography id="add-product-modal" variant="h6" sx={{ color: 'text.secondary'}}>Add New Product</Typography>
+                {errorMessages && <Typography sx={{ color: 'error' }}>{errorMessages}</Typography>}
                 <Box sx={{ display: 'flex', gap: 2 }}>
                     <TextField margin="dense" name="name" label="Name" value={formData.name} onChange={handleChange} />
                     <TextField margin="dense" name="manufacturer" label="Manufacturer" value={formData.manufacturer} onChange={handleChange} />

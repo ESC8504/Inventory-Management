@@ -8,7 +8,7 @@ function HomePage() {
                     Welcome back, Admin
                 </Typography>
                 <Typography variant="h6" color="textSecondary">
-                    Inventory Management System
+                    Eric's Custom PC Builder Store
                 </Typography>
             </Box>
         </Container>

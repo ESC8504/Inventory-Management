@@ -21,7 +21,7 @@ function AddProductModal({ open, handleClose, productAdded }) {
     const [errorMessages, setErrorMessages] = useState('');
 
     useEffect(() => {
-        axios.get('http://localhost:8283/category/all')
+        axios.get(`${import.meta.env.VITE_REACT_URL}/category/all`)
             .then(res => setCategories(res.data))
             .catch(err => console.log(err));
     }, []);
@@ -34,7 +34,7 @@ function AddProductModal({ open, handleClose, productAdded }) {
     }
 
     const handleSubmit = () => {
-        axios.post('http://localhost:8283/product/add', {
+        axios.post(`${import.meta.env.VITE_REACT_URL}/product/add`, {
             name: formData.name,
             manufacturer: formData.manufacturer,
             categoryId: formData.categoryId,

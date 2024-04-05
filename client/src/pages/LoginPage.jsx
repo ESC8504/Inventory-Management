@@ -17,7 +17,8 @@ function LoginPage() {
                 navigate('/home');
             })
             .catch(err => {
-                setErrorMessages(err.message);
+                console.error(err.message);
+                setErrorMessages("Error (auth/invalid-credential).");
             });
     }
 

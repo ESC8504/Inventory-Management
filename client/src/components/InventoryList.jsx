@@ -8,7 +8,7 @@ function InventoryList() {
     const { selectedWarehouse } = useWarehouse();
 
     useEffect(() => {
-        axios.get(`http://localhost:8283/inventory/warehouse/${selectedWarehouse}`)
+        axios.get(`${import.meta.env.VITE_REACT_URL}/inventory/warehouse/${selectedWarehouse}`)
             .then(res => setInventory(res.data))
             .catch(err => console.log(err));
     }, [selectedWarehouse]);

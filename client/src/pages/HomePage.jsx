@@ -19,7 +19,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    height: '80vh'
+    height: '80vh',
+    animation: 'fadeIn 3s ease-out forwards'
 };
 
 export default HomePage;

@@ -21,7 +21,7 @@ function CategoryItem({ category, categoryEdited }) {
     };
 
     const handleSave = () => {
-        axios.put(`http://localhost:8283/category/update/${category.id}`, {
+        axios.put(`${import.meta.env.VITE_REACT_URL}/category/update/${category.id}`, {
             name: editedCategoryName
         })
             .then(res => {
@@ -41,7 +41,7 @@ function CategoryItem({ category, categoryEdited }) {
     }
 
     const handleConfirm = () => {
-        axios.delete(`http://localhost:8283/category/delete/${category.id}`)
+        axios.delete(`${import.meta.env.VITE_REACT_URL}/category/delete/${category.id}`)
             .then(res => {
                 setConfirmOpen(false);
                 categoryEdited();

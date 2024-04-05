@@ -43,7 +43,8 @@ The project aims to develop an inventory management solution tailored for compan
 
 7. **Run the application**
 
-   `npm run dev` and start the spring application
+   `npm run dev`
+   `start the spring application`
 
 
 ## Project Overview & Demos

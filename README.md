@@ -39,11 +39,11 @@ The project aims to develop an inventory management solution tailored for compan
    
    `npm install`
 
-6. **Update any .env file**
+6. **Update any example.env.example file to .env.development.local**
 
 7. **Run the application**
 
-   `npm run dev`
+   `npm run dev` and start the spring application
 
 
 ## Project Overview & Demos

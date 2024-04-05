@@ -29,7 +29,7 @@ function WarehouseItem({ warehouse, warehouseEdited }) {
     };
 
     const handleSave = () => {
-        axios.put(`http://localhost:8283/warehouse/update/${warehouse.warehouseId}`, {
+        axios.put(`${import.meta.env.VITE_REACT_URL}/warehouse/update/${warehouse.warehouseId}`, {
             name: editedWarehouse.warehouseName,
             location: editedWarehouse.warehouseLocation,
             capacity: Number(editedWarehouse.capacity)
@@ -51,7 +51,7 @@ function WarehouseItem({ warehouse, warehouseEdited }) {
     }
 
     const handleConfirm = () => {
-        axios.delete(`http://localhost:8283/warehouse/delete/${warehouse.warehouseId}`)
+        axios.delete(`${import.meta.env.VITE_REACT_URL}/warehouse/delete/${warehouse.warehouseId}`)
             .then(res => {
                 setConfirmOpen(false);
                 warehouseEdited();

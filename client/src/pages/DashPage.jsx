@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button, Box, Typography, Toolbar } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import WarehouseSelector from '../utils/WarehouseSelector';
 
 function DashPage() {
     const [inventory, setInventory] = useState([]);
@@ -17,14 +18,20 @@ function DashPage() {
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredNames, setFilteredNames] = useState([]);
     const [hasSearchTerm, setHasSearchTerm] = useState(false);
+
+    const [selectedWarehouse, setSelectedWarehouse] = useState('all');
+
     useEffect(() => {
-        axios.get(`http://localhost:8283/product/all`)
+        const endpoint = selectedWarehouse === 'all'
+            ? `${import.meta.env.VITE_REACT_URL}/product/all`
+            : `${import.meta.env.VITE_REACT_URL}/product/warehouse/${selectedWarehouse}`;
+        axios.get(endpoint)
             .then(res => {
                 setInventory(res.data)
                 setFilteredNames(res.data)
             })
             .catch(err => console.log(err));
-    }, [reload]);
+    }, [reload, selectedWarehouse]);
 
     const handleModalOpen = () => setIsModalOpen(true);
     const handleModalClose = () => setIsModalOpen(false);
@@ -49,7 +56,6 @@ function DashPage() {
         }
       };
 
-
     return (
         <div>
             <Toolbar />
@@ -58,9 +64,10 @@ function DashPage() {
                     Inventory Management
                 </Typography>
             </Box>
-            <Box display="flex" justifyContent="flex-start" gap={28}>
+            <Box display="flex" justifyContent="space-between">
                 <SearchBar onSearch={handleSearch}/>
                 <Button startIcon={<AddCircleOutlineRoundedIcon />} onClick={handleModalOpen}>Add Product</Button>
+                <WarehouseSelector selectedWarehouse={selectedWarehouse} onSelectWarehouse={setSelectedWarehouse} />
             </Box>
             <InventoryTable
                 inventory={filteredNames}

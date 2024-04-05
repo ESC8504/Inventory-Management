@@ -12,7 +12,7 @@ function CategoryPage() {
     const [reload, setReload] = useState(false);
 
     useEffect(() => {
-        axios.get('http://localhost:8283/category/all')
+        axios.get(`${import.meta.env.VITE_REACT_URL}/category/all`)
             .then(res => setCategories(res.data))
             .catch(err => console.log(err));
     }, [reload]);

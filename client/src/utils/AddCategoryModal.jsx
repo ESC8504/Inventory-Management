@@ -16,7 +16,7 @@ function AddCategoryModal({ open, handleClose, categoryAdded }) {
         }
 
         const handleSubmit = () => {
-            axios.post('http://localhost:8283/category/add', {
+            axios.post(`${import.meta.env.VITE_REACT_URL}/category/add`, {
                 name: formData.name
             })
                 .then(res => {

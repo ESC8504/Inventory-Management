@@ -18,7 +18,7 @@ function AddWarehouseModal({ open, handleClose, warehouseAdded }) {
     }
 
     const handleSubmit = () => {
-        axios.post('http://localhost:8283/warehouse/add', {
+        axios.post(`${import.meta.env.VITE_REACT_URL}/warehouse/add`, {
             name: formData.name,
             location: formData.location,
             capacity: Number(formData.capacity)

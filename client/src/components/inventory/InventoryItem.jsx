@@ -15,13 +15,13 @@ function InventoryItem({ productItem, productEdited}) {
 
     // for some reason, the warehouse and category contexts are not working here, had to use useState and useEffect here
     useEffect(() => {
-        axios.get('http://localhost:8283/warehouse/all')
+        axios.get(`${import.meta.env.VITE_REACT_URL}/warehouse/all`)
             .then(res => setWarehouses(res.data))
             .catch(err => console.log(err));
     },[]);
 
     useEffect(() => {
-        axios.get('http://localhost:8283/category/all')
+        axios.get(`${import.meta.env.VITE_REACT_URL}/category/all`)
             .then(res => {
                 setCategories(res.data)
             })
@@ -61,7 +61,7 @@ function InventoryItem({ productItem, productEdited}) {
     const [errorMessages, setErrorMessages] = useState('');
 
     const handleSave = () => {
-        axios.put(`http://localhost:8283/product/update/${productItem.id}`, {
+        axios.put(`${import.meta.env.VITE_REACT_URL}/product/update/${productItem.id}`, {
             name: editedInventory.name,
             manufacturer: editedInventory.manufacturer,
             partNumber: editedInventory.partNumber,
@@ -89,7 +89,7 @@ function InventoryItem({ productItem, productEdited}) {
     }
 
     const handleConfirm = () => {
-        axios.delete(`http://localhost:8283/product/delete/${productItem.id}`)
+        axios.delete(`${import.meta.env.VITE_REACT_URL}/product/delete/${productItem.id}`)
             .then(res => {
                 setConfirmOpen(false);
                 productEdited();
@@ -155,7 +155,7 @@ function InventoryItem({ productItem, productEdited}) {
                         value={editedInventory.price}
                         onChange={e => setEditedInventory({ ...editedInventory, price: e.target.value })}
                     />
-                ) : (productItem.price)}
+                ) : (`$${productItem.price}`)}
             </TableCell>
             <TableCell>{inventoryInfo.warehouse.name}</TableCell>
             <TableCell>

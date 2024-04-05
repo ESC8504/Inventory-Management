@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button, MenuItem, Select, FormControl, InputLabel } from '@mui/material';
 
-function WarehouseList( {selectedWarehouse, onSelectWarehouse} ) {
+function WarehouseSelector( {selectedWarehouse, onSelectWarehouse} ) {
     const [warehouses, setWarehouses] = useState([]);
 
     useEffect(() => {
@@ -14,17 +14,30 @@ function WarehouseList( {selectedWarehouse, onSelectWarehouse} ) {
     }, []);
 
     return (
-        <FormControl fullWidth>
-            <InputLabel id="warehouse-select">Warehouse</InputLabel>
+        <FormControl>
+            <InputLabel id="warehouse-select"></InputLabel>
             <Select
                 labelId="warehouse-select"
                 value={selectedWarehouse}
                 onChange={e => {
+                    console.log(e.target.value)
                     onSelectWarehouse(e.target.value)
                 }}
                 displayEmpty
                 defaultValue=""
+                sx={{
+                    height: 39,
+                    width: 270,
+                }}
+                MenuProps={{
+                    PaperProps: {
+                        style: {
+                            width: 270,
+                        },
+                    },
+                }}
             >
+                <MenuItem value="all">All Warehouse</MenuItem>
                 {warehouses.map(warehouse => (
                     <MenuItem key={warehouse.id} value={warehouse.id}>{warehouse.name}</MenuItem>
                 ))}
@@ -33,4 +46,4 @@ function WarehouseList( {selectedWarehouse, onSelectWarehouse} ) {
     )
 }
 
-export default WarehouseList;
+export default WarehouseSelector;

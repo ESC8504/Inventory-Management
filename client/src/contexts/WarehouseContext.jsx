@@ -10,7 +10,7 @@ export const WarehouseProvider = ({ children }) => {
     const [warehouses, setWarehouses] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8283/warehouse/all')
+        axios.get(`${import.meta.env.VITE_REACT_URL}/warehouse/all`)
             .then(res => setWarehouses(res.data))
             .catch(err => console.log(err));
     },[]);

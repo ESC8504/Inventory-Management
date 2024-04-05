@@ -38,7 +38,7 @@ function NavBar() {
             <Container>
                 {isLogged ? (
                     <Toolbar sx={{ justifyContent: 'space-between' }}>
-                        <Typography variant="h4" component="div">
+                        <Typography variant="h5">
                             Inventory Management System
                         </Typography>
                         <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
@@ -46,7 +46,7 @@ function NavBar() {
                             <Button color="inherit" component={Link} to="/home">Home</Button>
                             <Button color="inherit" component={Link} to="/warehouse">Warehouse</Button>
                             <Button color="inherit" component={Link} to="/category">Category</Button>
-                            <Button color="inherit" component={Link} to="/dash">Dashboard</Button>
+                            <Button color="inherit" component={Link} to="/dash">Inventory</Button>
                             <Button color="inherit" onClick={handleLogout}>Logout</Button>
                         </Box>
                     </Toolbar>

@@ -13,7 +13,7 @@ function WarehousePage() {
     const [reload, setReload] = useState(false);
 
     useEffect(() => {
-        axios.get('http://localhost:8283/warehouse/storage-info')
+        axios.get(`${import.meta.env.VITE_REACT_URL}/warehouse/storage-info`)
             .then(res => setWarehouses(res.data))
             .catch(err => console.log(err));
     }, [reload]);

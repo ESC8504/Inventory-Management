@@ -22,6 +22,7 @@ function DashPage() {
     const [selectedWarehouse, setSelectedWarehouse] = useState('all');
 
     useEffect(() => {
+        // if selectedwarehouse is all, get all products, else get products for selected warehouse
         const endpoint = selectedWarehouse === 'all'
             ? `${import.meta.env.VITE_REACT_URL}/product/all`
             : `${import.meta.env.VITE_REACT_URL}/product/warehouse/${selectedWarehouse}`;

@@ -44,6 +44,12 @@ public class ProductController {
         return ResponseEntity.ok(products);
     }
 
+    @GetMapping("/warehouse/{warehouseId}")
+    public ResponseEntity<List<ProductModel>> getProductsByWarehouseId(@PathVariable int warehouseId) {
+        List<ProductModel> products = productService.getProductsByWarehouseId(warehouseId);
+        return ResponseEntity.ok(products);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<?> addProduct(@RequestBody ProductDTO productDTO) {
         try {

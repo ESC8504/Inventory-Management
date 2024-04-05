@@ -12,4 +12,7 @@ import com.inventorymanagement.server.model.ProductModel;
 public interface ProductRepository extends JpaRepository<ProductModel, Integer> {
     @Query("SELECT product FROM ProductModel product JOIN FETCH product.category category JOIN FETCH product.inventory inventory JOIN FETCH inventory.warehouse warehouse")
     List<ProductModel> findAllProductInfos();
+
+    @Query("SELECT product FROM ProductModel product JOIN product.inventory inventory WHERE inventory.warehouse.id = ?1")
+    List<ProductModel> findByWarehouseId(int warehouseId);
 }

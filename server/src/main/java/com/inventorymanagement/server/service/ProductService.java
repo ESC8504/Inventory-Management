@@ -36,6 +36,10 @@ public class ProductService {
         return productRepository.findAllProductInfos();
     }
 
+    public List<ProductModel> getProductsByWarehouseId(int warehouseId) {
+        return productRepository.findByWarehouseId(warehouseId);
+    }
+
     public ProductModel updateProduct(int productId, ProductDTO productDTO) {
 
             ProductModel existingProduct = productRepository.findById(productId).orElse(null);

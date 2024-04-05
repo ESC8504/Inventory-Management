@@ -1,52 +1,56 @@
 # Inventory-Management
-# Setup:
 
-1. git checkout main
+Table of Contents
+- [Description](#description)
+- [Author](#author)
+- [Built With](#built-with)
+- [Getting Started](#getting-started)
+- [Project Overview & Demos](#project-overview--demos)
 
-   git pull origin / git pull --rebase upstream main
+ ## Description
+The project aims to develop an inventory management solution tailored for company administrators to oversee and manipulate inventory across various warehouses. This encompasses functionalities for viewing, adding, deleting, and modifying inventory items. A critical requirement for the system is an intuitive and straightforward user interface, ensuring that the administrative team can efficiently perform their duties. Additionally, the application will address complex scenarios like individual warehouse capacity limits and prevent the addition of items that would surpass these thresholds. The goal is to provide a seamless and efficient inventory management experience for administrators, accommodating the specific operational needs of their warehouses.
 
-   (make regular updates to keep local copy up to date).
-  (After that you can also merge the changes from your local main branch into the feature branch:
-  git checkout feature/xxx to make sure or switch to the feature branch
-  git merge main  this will merge the changes from the local main branch into the currently checked-out feature branch.)
+## Author
 
-3. git checkout -b feature/XXX
-to create a "feature" branch to keep it away from the main branch, which keeps the work isolated and organized.
+- [**Eric Chang**](https://github.com/ESC8504)
 
-4. Coding, update, commit
+## Built With
+![](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black) 
+![](https://img.shields.io/badge/-React-61DAFB?style=flat-square&logo=react&logoColor=black) 
+![](https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white)
+![](https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+![](https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+![](https://img.shields.io/badge/-Material_UI-0081CB?style=flat-square&logo=material-ui&logoColor=white)
+![](https://img.shields.io/badge/-Java-007396?style=flat-square&logo=java&logoColor=white)
+![](https://img.shields.io/badge/-Spring_Boot-6DB33F?style=flat-square&logo=spring-boot&logoColor=white)
+![](https://img.shields.io/badge/-PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
 
-5. git push -u origin feature/XXX
+## Getting Started
 
-This pushes new-feature to the central repo, and the -u flag adds it as a remote tracking branch. After setting up the tracking branch, git push can be invoked without any parameters to automatically push the new-feature branch to the central repository.
+1. **Clone the repo**
 
-# Request a new branch and pull request :
-1. git checkout -b eric-feature main
+   `git clone https://github.com/ESC8504/Inventory-Management.git`
 
-This checks out a branch called eric-feature based on main, and the -b flag tells Git to create the branch if it doesn’t already exist.
+3. **Navigate to project directory**
+   
+   `cd your-project-name`
 
-2. coding, commit, update
+5. **Install necessary dependencies**
+   
+   `npm install`
 
-3. git push -u origin eric-feature
+6. **Update any .env file**
 
-This pushes eric-feature to the central repository (origin), and the -u flag adds it as a remote tracking branch.
+7. **Run the application**
 
-4. Create a Pull Request
+   `npm run dev`
 
-5. git checkout main
 
-   git pull
+## Project Overview & Demos
 
-   git pull origin eric-feature
+<p float="left">
+  <img src="client/src/assets/inventory1.png" alt="Screenshot1" width="800" />
+  <img src="client/src/assets/inventory2.png" alt="Screenshot2" width="800" /> 
+</p>
 
-   git push
 
-If the team member wanted, they could pull eric-feature into their local repository and work on it on his own. Any commits he added would also show up in the pull request.
-This process will results in a merge commit. Once the team member is ready to accept the pull request, they needs to merge the feature into the stable project (this can be done by any one on the team)
-
-   They can also do:
-
-   git fetch origin
-
-   git checkout eric-feature
-
-6. ***Review and Merge: Before every merge, at least one group member other than the one who made the pull request should review the pull request, possibly requesting changes. Once approved, the changes can be merged into the main branch of the organization repository.

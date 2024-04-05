@@ -20,7 +20,6 @@ function WarehouseSelector( {selectedWarehouse, onSelectWarehouse} ) {
                 labelId="warehouse-select"
                 value={selectedWarehouse}
                 onChange={e => {
-                    console.log(e.target.value)
                     onSelectWarehouse(e.target.value)
                 }}
                 displayEmpty
